@@ -1,9 +1,11 @@
+import { useLoaderData } from "react-router-dom"
 import PopularProducts from "../../components/PopularProducts"
 
 function Homepage() {
+  const coffees = useLoaderData();
   return (
     <div>
-      <PopularProducts/>
+      <PopularProducts coffees={coffees} />
     </div>
   )
 }
