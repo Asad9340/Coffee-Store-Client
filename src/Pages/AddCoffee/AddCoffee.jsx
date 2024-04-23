@@ -1,9 +1,46 @@
+import Swal from 'sweetalert2';
+
 function AddCoffee() {
+  const handleAddCoffee = e => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const chef = form.chef.value;
+    const supplier = form.supplier.value;
+    const taste = form.taste.value;
+    const category = form.category.value;
+    const details = form.details.value;
+    const photo = form.photo.value;
+    const newCoffee = { name, chef, supplier, taste, category, details, photo };
+    console.log(newCoffee);
+    fetch('http://localhost:5000/coffee', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(newCoffee),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Added New Coffee',
+            icon: 'success',
+            confirmButtonText: 'Added',
+          });
+        }
+      });
+  };
   return (
     <div className="flex justify-center items-center h-screen">
-      <form className="max-w-5xl mx-auto">
+      <form
+        onSubmit={handleAddCoffee}
+        className="max-w-5xl mx-auto bg-[#F4F3F0] px-4 md:px-8 py-4 "
+      >
         <h6 className="text-blueGray-400 text-3xl mt-3 mb-6 font-bold uppercase text-center">
-         Add New Coffee
+          Add New Coffee
         </h6>
         <div className="flex flex-wrap">
           <div className="w-full lg:w-6/12 px-4">
