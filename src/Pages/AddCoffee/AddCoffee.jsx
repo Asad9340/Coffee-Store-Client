@@ -81,7 +81,7 @@ function AddCoffee() {
                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                 htmlFor="grid-password"
               >
-                Supplier
+                Supplier Name
               </label>
               <input
                 type="text"
